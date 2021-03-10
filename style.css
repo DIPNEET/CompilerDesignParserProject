@@ -1,0 +1,159 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color:"#777";
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.70;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("img_4.png");
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  background-image: url("img_3.png");
+  min-height: 300px;
+}
+
+.bgimg-3 {
+  background-image: url("img_2.jpg");
+  min-height: 300px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 55%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+.caption span.border {
+    background-color: rgb(253, 174, 223);
+    color: rgb(190, 0, 175);
+    padding: 15px;
+    font-size: 22px;
+    letter-spacing: 7px;
+    
+  
+  }
+.caption1 {
+    position: absolute;
+    left: 0;
+    top: 90%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+
+  
+.caption1 span.border1 {
+  background-color: #111;
+  color: #fff;
+  padding: 12px;
+  font-size: 15px;
+  letter-spacing: 8px;
+ 
+}
+.caption2 {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+.caption2 span.border2 {
+  background-color: rgb(253, 174, 223);
+  color: rgb(7, 7, 7);
+  padding: 7px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.caption3 {
+  position: absolute;
+  left: 0;
+  top: 70%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+
+.caption3 span.border3 {
+background-color: #111;
+color: #fff;
+padding: 18px;
+font-size: 20px;
+letter-spacing: 10px;
+
+}
+.caption4 {
+  position: absolute;
+  left: 0;
+  top: 90%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+
+.caption4 span.border4 {
+background-color: #111;
+color: #fff;
+padding: 20px;
+font-size: 20px;
+letter-spacing: 10px;
+
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 30px "Lato", sans-serif;
+  color: #111;
+}
+
+
+img:hover{
+    transform: scale(1.3,1.5);
+}
+.code1 {
+  
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 14px;
+  background-color: lightblue;
+  color: #000;
+  width:90%;
+  margin:7%;
+  
+}
+pre {
+  overflow: scroll;
+  height: 400px;
+}
+
+/* Turn off parallax scrolling for tablets and phones
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+} */

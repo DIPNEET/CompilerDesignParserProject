@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    
+     </head>
+<body>
+
+<div class="bgimg-1">
+    <div class="caption">
+        <span class="border">PARSER PROJECT</span><br><br>
+        <span class="border">C++ : DEFINING FUNCTIONS</span><br><br>
+        <span class="border">BY: DIPNEET KAUR & DRISHTI MALHOTRA</span><br><br>
+        <span class="border">SUBMITTED TO : DR. ANKIT RAJPAL</span><br><br>
+   
+    </div>
+   
+    <div class="caption1">
+        <br>
+        <span class="border1">Scroll Down</span>
+    </div>
+</div>
+
+<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: center;">
+  <h3 style="text-align:center;">ABOUT</h3>
+  
+  <p>Syntax analysis (Parsing) is the second phase of the compiler design process that comes after lexical analysis. <br>
+    It analyses the syntactical structure of the given input.It checks if the given input is in the correct syntax of the <br>
+    programming language in which the input has been written (confirming to the grammar of the programming language).<br>
+    A Parse Tree is generated with the predefined grammar of the programming language and the syntax analyzer (parser) <br>
+    checks whether a given program conforms to the grammar.If it confirms, the parser then creates the parse tree of that <br>
+    source program else it will display error messages.</p>
+</div>
+
+<div class="bgimg-2">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:35px;color: #f7f7f7;font-weight: bolder;">C++ : DEFINING A FUNCTION</span>
+  </div>
+</div>
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: center;">
+  <p>This project is about analysing the syntactical structure of a function defined in C++ language, in short, this grammar is to validate C++ functions.<br>It takes input as a function and check if it is correct in terms of it's syntax or not.</p>
+  <p>INPUT : A function definition !</p>
+  <p>OUTPUT : Valid or Not Valid Syntax ! </p>
+  </div>
+</div>
+
+<div class="bgimg-3">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:35px;color: #0a0a0a;font-weight: bolder;">LET'S VISIT CODE! <BR></span>
+  
+  </div>
+</div>
+<h2 style="color:rgb(33, 72, 243);text-align:center;">Input Stream (characters) -> Lex (tokens) -> Yacc (Abstract Syntax Tree) </h2>
+<h3 style="text-align:center;">LEX</h3>
+  <p style="text-align:center;font-size: 20px;">Lex is a lexical analyzer. It splits text up into tokens. Its power is roughly equivalent to regular expression matching. </p>
+  <div class="code1" style="position:relative;">
+  <pre><code>
+    %{
+      #include "y.tab.h"
+    %}
+    
+    %%
+    
+    //RULES SECTION
+
+    byte|short|int|long|float|double|bool|char  return DATA_TYPE;  //RETURNS A TOKEN CORRESPONDING TO DATA TYPE
+    
+    void                                        return VOID_TYPE;  //RETURNS A TOKEN CORRESPONDING TO VOID TYPE
+    
+    inline                                      return INLINE;     //RETURNS A TOKEN CORRESPONDING TO INLINE 
+    
+    //RETURNS A TOKEN CORRESPONDING TO RESERVED WORDS
+
+    alignas|and|atomic_cancel|auto|catch|char32_t|concept|const_cast|co_return|default  return RESERVED_WORD;
+    enum|extern|for|if|mutable|noexcept|nullptr|or_eq|public|requires|signed|switch     return RESERVED_WORD;
+    static_assert|this|typeid|unsigned|while|alignof|and_eq|atomic_commit|bitand|char   return RESERVED_WORD;
+    break|const|class|continue|co_yield|delete|dynamic_cast|explicit|false|friend|try   return RESERVED_WORD;
+    import|namespace|not|operator|private|register|return|sizeof|static_cast|using      return RESERVED_WORD;
+    synchronized|thread_local|typename|volatile|xor|and|asm|atomic_noexcept|bitor       return RESERVED_WORD;
+    case|char16_t|compl|constexpr|co_await|decltype|do|else|export|float|goto           return RESERVED_WORD;
+    module|new|not_eq|or|protected|reinterpret_cast|short|static|struct|template        return RESERVED_WORD;
+    throw|typedef|union|virtual|wchar_t|xor_eq                                          return RESERVED_WORD;
+    
+    
+    \&                                          return REFERENCE;    //RETURNS A TOKEN CORRESPONDING TO REFERENCE OPERATOR
+    \*                                          return POINTER;      //RETURNS A TOKEN CORRESPONDING TO pointers
+    [A-Za-z_][A-Za-z0-9_]*                      return IDENTIFIER;   //RETURNS A TOKEN CORRESPONDING TO IDENTIFIERS
+    [ \t]                                       ;                    
+    \(                                          return OPENING_BRACE; //RETURNS A TOKEN CORRESPONDING TO OPENING BRACE
+    \)                                          return CLOSING_BRACE; //RETURNS A TOKEN CORRESPONDING TO CLOSING BRACE
+  
+    \,                                          return COMMA;         //RETURNS A TOKEN CORRESPONDING TO COMMA
+    \{                                          return OPENING_CURLY_BRACE; //RETURNS A TOKEN CORRESPONDING TO OPENING CURLY BRACE
+    \}                                          return CLOSING_CURLY_BRACE;  //RETURNS A TOKEN CORRESPONDING TO CLOSING CURLY BRACE
+    .                                           return CONTENT;      //RETURNS A TOKEN CORRESPONDING TO CONTENT
+    \n                                          return NEWLINE;      //RETURNS A TOKEN CORRESPONDING TO NEW LINE
+    %%
+    
+    int yywrap()
+    {
+      return 1;
+    }
+    
+  </code></pre>
+</div>
+
+<h3 style="text-align:center;">YACC</h3>
+  <p style="text-align:center;font-size: 20px;">Yacc is a parser generator. It takes a sequence of tokens (say, from lex) and interprets them as series of statements.<BR> Its power is roughly equivalent to context free grammars.</p>
+  
+<div class="code1" style="position:relative;">
+  
+  <pre><code>%{
+
+  #include<stdio.h> 
+  #include<stdlib.h>
+  int yylex();
+  int yyerror();
+  
+  %}
+  
+//YACC DECLARATIONS
+
+  %token  DATA_TYPE IDENTIFIER OPENING_BRACE  CLOSING_BRACE COMMA NEWLINE OPENING_CURLY_BRACE CLOSING_CURLY_BRACE
+  %token  RESERVED_WORD CONTENT REFERENCE POINTER VOID_TYPE INLINE
+  
+  %%
+
+//GRAMMAR RULES
+
+  start      : function NEWLINE {printf("Input IS Valid Function Of C++"); exit(0);}
+             ;
+  function   : inline DATA_TYPE prefix identifier OPENING_BRACE parameters CLOSING_BRACE OPENING_CURLY_BRACE content CLOSING_CURLY_BRACE 
+             | inline VOID_TYPE identifier OPENING_BRACE parameters CLOSING_BRACE OPENING_CURLY_BRACE content CLOSING_CURLY_BRACE
+             ;           
+  parameters : DATA_TYPE prefix identifier another_parameter
+             |
+             ;
+             
+  inline     : INLINE
+             |
+         ;
+                    
+  prefix     : REFERENCE
+             | POINTER
+             | POINTER POINTER 
+             | POINTER POINTER POINTER
+             |
+         ;
+                           
+  identifier : IDENTIFIER
+             | RESERVED_WORD   {printf("Can NOT Use Keyword As Identifier");YYABORT;}
+         ;  
+                  
+  another_parameter : COMMA DATA_TYPE prefix identifier another_parameter 
+                    |
+                    ;
+                
+  content        :  CONTENT content
+           |  IDENTIFIER content
+           |  RESERVED_WORD content
+           |  OPENING_BRACE content
+           |  CLOSING_BRACE content
+           |  POINTER content
+           |  REFERENCE content
+           |  DATA_TYPE content  
+           |
+           ;    
+  %%
+  
+  int yyerror(char const* s)
+  {
+    printf("Input IS NOT Valid Function Of C++");
+    return 1;
+  }
+  
+  int main()
+  {
+    printf("------------------------ PARSER FOR C++ FUNCTION -------------------------\n");
+    printf("Enter the C++ function \n");
+    yyparse();
+    return 0;
+  }
+    
+    
+  </code></pre>
+  </div>
+  
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:35px 50px;">
+    
+
+  <h2>VALIDITY CHECK (OUTPUTS)</h2>
+  <img src="o1.jpeg" width=400 height=300 style=" border: 8px solid  rgb(253, 174, 223);"/> 
+  <img src="o2.jpeg" width=400 height=300 style=" border: 8px solid  rgb(144, 202, 241);"/>
+  <img src="o3.jpeg" width=400 height=300 style=" border: 8px solid  rgb(253, 174, 223);"/>
+  <img src="o4.jpeg" width=400 height=300 style=" border: 8px solid  rgb(144, 202, 241);"/>
+  <img src="o5.jpeg" width=400 height=300 style=" border: 8px solid  rgb(253, 174, 223);"/>
+  <img src="o6.jpeg" width=400 height=300 style=" border: 8px solid  rgb(144, 202, 241);"/>
+  <img src="o7.jpeg" width=400 height=300 style=" border: 8px solid  rgb(253, 174, 223);"/>
+  <img src="o8.jpeg" width=400 height=300 style=" border: 8px solid  rgb(144, 202, 241);"/>
+  <img src="o9.jpeg" width=400 height=300 style=" border: 8px solid  rgb(253, 174, 223);"/>
+
+
+  
+  </div>
+
+  <div class="bgimg-2">
+    <div class="caption">
+    <span class="border" style="background-color:transparent;font-size:35px;color: #f7f7f7;font-weight: bolder;">CAPABILITIES</span>
+    </div>
+  </div>
+</div>
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <h2>Types of Functions it Accepts </h2>
+    <li>All with following return types- void , int , byte, float , double , bool , char</li>
+    <li>Detects the data types and identifiers in the formal parameters</li>
+    <li>A pointer type ie. return types such as int* , int** , int*** (till level 3 pointers)</li>
+    <li>All types of formal parameters ie. Call by value, Call by reference, Call a pointer.</li>
+    <li>Functions with any number of parameters or parameterless</li>
+    <li>Can be an Inline function</li>
+    
+
+  
+  
+
+  </div>
+</div>
+
+<div class="bgimg-3">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:35px;font-weight: bolder;color: #0a0a0a;">LIMITATIONS</span>
+  </div>
+</div>
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+    <h2>Types of Functions it Can Not Accept </h2>
+    <li>Incapable to check what is inside the function block</li>
+    <li>Can not handle functions that returns class type objects</li>
+    <li>It can not handle formal parameters of class type,classes are user defined data types, </li>
+    <li>Functions with scope resolution operator (::) or parameters using the same</li>
+    <li>Function declarations (separately) unhandled</li>
+    
+  </div>
+</div>
+
+<div class="bgimg-2">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">REFERENCES</span>
+  </div>
+</div>
+</div>
+
+<div style="position:relative;">
+<div style="color:#000;background-color:#fff;text-align:center;padding:50px 80px;text-align: center;">
+  <div class="caption2"></div>
+  
+    <span class="border2"><a href="https://www.geeksforgeeks.org/inline-functions-cpp/">geeksforgeeks.org/inline-functions-cpp</a></span><br><br>
+    <span class="border2"><a href="https://www.w3schools.com/css/">w3schools.com/css</a></span><br><br>
+    <span class="border2"><a href="https://medium.com/weekly-webtips/syntax-analysis-in-compiler-design-parsers-3ef6e292f668">medium.com/weekly-webtips/syntax-analysis-in-compiler-design-parsers</a></span><br><br>
+    <span class="border2"><a href="https://stackoverflow.com/questions/27655272/pointer-p-and-p-in-c-programming-language">stackoverflow.com/questions</a></span><br><br>
+    <span class="border2"><a href= "https://www.desktopbackground.org/wallpaper/compiler-hd-wallpaper-by-pcbots-png-409505">desktopbackground.org/wallpaper</a></span><br><br>
+    <span class="border2"><a href="https://www.vectorstock.com/royalty-free-vector/abstract-background-computer-vector-9839014">vectorstock.com/royalty-free-vector</a></span><br><br>
+    <span class="border2"><a href="http://wallpaperping.com/wp-content/uploads/2018/10/download.png" >wallpaperping.com/wp-content</a></span><br><br>
+    <span class="border2"><a href="https://en.wikipedia.org/w/index.php?curid=52104842 ">en.wikipedia.org/windex.php?curid=52104842</a></span><br><br>
+</div>
+</div>
+</div>
+
+<div class="bgimg-1">
+   
+  <div class="caption3">
+    <span class="border3">Thank You !</span> 
+    
+  </div>
+
+
+  <div class="caption4">
+  <span class="border4">DIPNEET KAUR (12)  </span> 
+  <span class="border4">DRISHTI MALHOTRA (13)</span>
+</div>
+</div>
+</body>
+</html>
